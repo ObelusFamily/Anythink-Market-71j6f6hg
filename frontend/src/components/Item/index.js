@@ -3,6 +3,8 @@ import CommentContainer from "./CommentContainer";
 import React from "react";
 import { connect } from "react-redux";
 import marked from "marked";
+import placeholder from "../../imgs/placeholder.png";
+
 import {
   ITEM_PAGE_LOADED,
   ITEM_PAGE_UNLOADED,
@@ -42,13 +44,14 @@ class Item extends React.Component {
     const canModify =
       this.props.currentUser &&
       this.props.currentUser.username === this.props.item.seller.username;
+      {console.log("props",this.props.item)}
     return (
       <div className="container page" id="item-container">
         <div className="text-dark">
           <div className="row bg-white p-4">
             <div className="col-6">
               <img
-                src={this.props.item.image}
+                src={this.props.item.image === "" ? placeholder : this.props.item.image}
                 alt={this.props.item.title}
                 className="item-img"
                 style={{ height: "500px", width: "100%", borderRadius: "6px" }}
